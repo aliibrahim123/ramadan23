@@ -32,7 +32,9 @@ function setSor (sor, i=0) {
 		forel.style.border = '10px double black';
 		forel.innerText = ' الى الامام ';
 		forel.onclick = () => setSor(curSor, Math.min(Math.floor(quranM[sor].total_verses / 20), curInd+1));
-		$('#quran-c')[0].prepend(backel, backel2, forel)
+		let pes = i === 0 && sor !== 'الفاتحة' ? 'بِسۡمِ ٱللَّهِ ٱلرَّحۡمَٰنِ ٱلرَّحِيمِ()' : '';
+		$('#quran-c')[0].prepend(backel, backel2, forel, document.createElement('br'), pes);
+		$('#quran-c')[0].append(Math.floor(quranM[sor].total_verses / 20 ) === i ? 'صدق الله العليّ العظيم' : '')
 	}
 }
 var curInd = 0;
