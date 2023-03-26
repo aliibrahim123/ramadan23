@@ -1,41 +1,38 @@
-fetch('quran.json').then(q=>q.json()).then(q=>globalThis.quran = q).then(()=> {
-	init()
-});
-function init () {
-	$('#quran-c')[0].innerHTML = quran.map(i => '<div onclick = "setSor('+ "'" + i.name + "')" + '" class="soritem">' + i.name + '</div>').join('\n');
-	var sbt = document.createElement('span');
-	sbt.style.border = '10px double black';
-	sbt.innerText = 'بحث';
-	sbt.onclick = () => setSor($('input')[0]);
-	var sin = document.createElement('input');
-	sin.oninput = (e) => {$('.soritem').forEach(el => el.style.display = (el.innerText.includes(e.target.value) ? 'block' : 'none'))}
-	$('#quran-c')[0].prepend(sin ,sbt);
-	quranM = Object.fromEntries(quran.map(i=> [i.name, i]))
-}
 var $ = (s) => [...document.querySelectorAll(s)];
-function setSor (sor, i=0) {
-	sor = sor.trim();
-	if (sor in quranM) {
-		curSor = sor;
-		curInd = i;
-		let arr = quranM[sor].verses.slice(i*20, (1+i)*20);
-		$('#quran-c')[0].innerText = arr.map((i,ii)=> i.text + ' (' + i.id + ') ').join('');
-		var backel = document.createElement('span');
-		backel.style.border = '10px double black';
-		backel.innerText = ' رجوع';
-		backel.onclick = () => init() || (curInd = 0);
-		var backel2 = document.createElement('span');
-		backel2.style.border = '10px double black';
-		backel2.innerText = 'الى الخلف';
-		backel2.onclick = () => setSor(curSor, Math.max(curInd-1, 0));
-		var forel = document.createElement('span');
-		forel.style.border = '10px double black';
-		forel.innerText = ' الى الامام ';
-		forel.onclick = () => setSor(curSor, Math.min(Math.floor(quranM[sor].total_verses / 20), curInd+1));
-		let pes = i === 0 && sor !== 'الفاتحة' ? 'بِسۡمِ ٱللَّهِ ٱلرَّحۡمَٰنِ ٱلرَّحِيمِ()' : '';
-		$('#quran-c')[0].prepend(backel, backel2, forel, document.createElement('br'), pes);
-		$('#quran-c')[0].append(Math.floor(quranM[sor].total_verses / 20 ) === i ? 'صدق الله العليّ العظيم' : '')
+
+var init =()=> {
+	$('#quran-c')[0].innerHTML = `
+		<span style='border: 10px double black'><a style='color:white'href = '../index.html'>رجوع</a></span>
+		<span onclick = 'sorI()'style='border: 10px double black'>سورة</span>
+		<span onclick = 'pI()'style='border: 10px double black'>صفحة</span>
+		<span onclick = 'partI()'style='border: 10px double black'>جزأ</span>
+	`
+};
+var sorI =()=> {
+	$('#quran-c')[0].innerHTML = `
+		<span onclick = 'init()'style='border: 10px double black'>رجوع</span>
+		${sorInd.slice(1).map((sor, i)=>"<div><a style='color:white'href='viewer?" + (i+1) + '/' + sormap[sor].i + "'>" + sor + '</a></div>').join('')}
+	`
+}
+var pI =()=> {
+	var p = Math.max(0, Math.min(604,Number(prompt('اي صفحة'))))-1;
+	location.href = location.href.replace('main.html', 'viewer.html?' + pind[p] + '/' + (p+1))
+}
+var partI =()=> {
+	var p = ((Math.max(1, Math.min(30,Number(prompt('اي جزأ'))))-1) *20 +1);
+	p = p === 1? 0 :p;
+	location.href = location.href.replace('main.html', 'viewer.html?' + pind[p] + '/' + (p+1))
+}
+
+function getSor123 (n) {
+	var arr = sorInd.slice(1);
+	for (let i = 0; i<113; i++) {
+		if (sormap[arr[i]].e >= n) {
+			return i
+		}
 	}
 }
-var curInd = 0;
-var curSor = 0;
+var pind = Array.from({length:604});
+curSor = 1;
+pind = pind.map((ii,iii, iiii, i=iii+1)=>sormap[sorInd[curSor]].e >=i ? curSor : curSor = getSor123(i) +1)
+init()
