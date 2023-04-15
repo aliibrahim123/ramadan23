@@ -11,7 +11,7 @@ var init =()=> {
 var sorI =()=> {
 	$('#quran-c')[0].innerHTML = `
 		<span onclick = 'init()'style='border: 10px double black'>رجوع</span>
-		${sorInd.slice(1).map((sor, i)=>"<div><a style='color:white'href='viewer?" + (i+1) + '/' + sormap[sor].i + "'>" + sor + '</a></div>').join('')}
+		${sorInd.slice(1).map((sor, i)=>"<div><a style='color:white'href='viewer.html?" + (i+1) + '/' + sormap[sor].i + "'>" + sor + '</a></div>').join('')}
 	`
 }
 var pI =()=> {

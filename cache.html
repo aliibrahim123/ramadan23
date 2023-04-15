@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<link rel="manifest" href="./manifest.json">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ramadan23</title>
+<meta name="theme-color" content="black">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="ramadan23">
+<link rel="apple-touch-icon" href="./icons/icon-512x512.png">
+<meta name="msapplication-TileImage" content="./icons/icon-512x512.png">
+<meta name="msapplication-TileColor" content="black">
+<script src = 'common/scripts/rimg.js'></script>
+<link rel="stylesheet" href="style.css">
+<script>
+	setTimeout(() => {
+		rimg('common/imgs/')
+		
+	}, 1);
+</script>
+<div>
+	<span class = 'item-link' style='color:white'onclick = 'cach("quran")'>قرآن</span>
+	<span class = 'item-link'style='color:white'onclick = 'cach("doaa")'>دعاء</span>
+	<span class = 'item-link'style='color:white'onclick = 'cach("ziara")'>زيارة</span>
+	<span class = 'item-link'style='color:white'onclick = 'cach("abada")'>اعمال</span>
+	<span class = 'item-link'style='color:white'onclick = 'cach("sera")'>سيرة</span>
+	<span class = 'item-link'style='color:white'onclick = 'cach("qind")'>مواضيع الايات</span>
+	<span class = 'item-link'style='color:white'onclick = 'cach("blogs")'>اقوال</span>
+	<span class = 'item-link'style='color:white'onclick = 'cach("klam")'>اقوال قصيرة</span>
+	<span class = 'item-link'style='color:white'onclick = 'cach("ali")'>حكم الامام علي</span>
+	<span class = 'item-link'style='color:white'onclick = 'cach("dewan")'>ديوان</span>
+</div>
+<script>
+var chan = new MessageChannel()
+chan.port1.start()
+let cach = (n) => navigator.serviceWorker.controller.postMessage(n);
+navigator.serviceWorker.addEventListener("message", (i) => alert('تم'))
+</script>
