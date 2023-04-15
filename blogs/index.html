@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<link rel="manifest" href="./manifest.json">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ramadan23</title>
+<meta name="theme-color" content="black">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="ramadan23">
+<link rel="apple-touch-icon" href="./icons/icon-512x512.png">
+<meta name="msapplication-TileImage" content="./icons/icon-512x512.png">
+<meta name="msapplication-TileColor" content="black">
+<script src = 'common/scripts/rimg.js'></script>
+<link rel="stylesheet" href="style.css">
+<script>
+	setTimeout(() => {
+		rimg('common/imgs/')
+	}, 1);
+	navigator.serviceWorker.register('./sw.js', {type:'module'})
+</script>
+<div>
+	<span class = 'item-link'><a href = 'quran/main.html'>قرآن</a></span>
+	<span class = 'item-link'><a href = 'doaa/main.html'>دعاء</a></span>
+	<span class = 'item-link'><a href = 'ziara/main.html'>زيارة</a></span>
+	<span class = 'item-link'><a href = 'abada/main.html'>اعمال</a></span>
+	<span class = 'item-link'><a href = 'sera/main.html'>سيرة</a></span>
+	<span class = 'item-link'><a href = 'quranInd/main.html'>مواضيع الايات</a></span>
+	<span class = 'item-link'><a href = 'blogs/main.html'>اقوال</a></span>
+	<span class = 'item-link'><a href = 'klam/main.html'>اقوال قصيرة</a></span>
+	<span class = 'item-link'><a href = 'aliklam/main.html'>حكم الامام علي</a></span>
+	<span class = 'item-link'><a href = 'dewan/main.html'>ديوان</a></span>
+	<span class = 'item-link'><a href = 'tools/maspaha.html'>مسبحة</a></span>
+	<span class = 'item-link'><a href = 'cache.html'>تنزيل</a></span>
+</div>

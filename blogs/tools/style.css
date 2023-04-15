@@ -1,0 +1,23 @@
+body {
+	padding: 2.5%
+}
+
+#con {
+	padding: 5%;
+	background-color: rgba(0,0,0,75%);
+	border: black 10px double;
+	font-size: 25px;
+	color: white;
+	direction: rtl;
+	height: 75vh;
+	overflow-y: overlay
+}
+
+.item {
+	margin-top: 10px;
+}
+
+span {
+	display: inline-block;
+	margin: 5px
+}
